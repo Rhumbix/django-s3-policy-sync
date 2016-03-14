@@ -1,34 +1,40 @@
-django-request-logging
+django-s3-policy-sync
 ==========================
 
-Plug django-request-logging into your Django project and you will have intuitive and color coded request/response payload logging, for both web requests and API requests
+If your Django project relies on S3, for instance, file storage in S3, S3 policies can be a pain to manage.
 
-## Installing
+django-s3-policy-sync provides a solution to put S3 policies under source control.
+
+# Install django-s3-policy-sync
 
 ```bash
-$ pip install django-request-logging
+$ pip django-s3-policy-sync
 ```
 
-Then add ```request_logging.middleware.LoggingMiddleware``` to your ```MIDDLEWARE_CLASSES```.
+# Set up django-s3-policy-sync
+
+## Add ```s3_policy_sync.middleware.S3PolicySyncMiddleware``` to your ```MIDDLEWARE_CLASSES```.
 
 For example:
 
 ```
 MIDDLEWARE_CLASSES = (
     ...,
-    'request_logging.middleware.LoggingMiddleware',
+    's3_policy_sync.middleware.S3PolicySyncMiddleware',
     ...,
 )
 ```
 
-## Details
+## Configure 2 variables ```S3_POLICY_DIR``` and  ```S3_BUCKETS```
 
-Most of times you don't have to care about these details. But in case you need to dig deep:
+For example:
 
-* All logs are configured using logger name "django.request".
-* If HTTP status code is between 400 - 599, URIs are logged at ERROR level, otherwise they are logged at INFO level.
-* If HTTP status code is between 400 - 599, data are logged at ERROR level, otherwise they are logged at DEBUG level.
+```
+S3_POLICY_DIR = os.path.join(BASE_DIR, 'settings', 's3_policies')
+S3_BUCKETS = (S3_MEDIA_BUCKET, S3_PRIVATE_BUCKET)
+```
 
-## Enjoy!
+
+# Enjoy!
 
 Email me with any questions: [kenneth.jiang@gmail.com](kenneth.jiang@gmail.com).
