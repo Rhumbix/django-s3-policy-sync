@@ -34,7 +34,11 @@ S3_POLICY_DIR = os.path.join(BASE_DIR, 'settings', 's3_policies')
 S3_BUCKETS = (S3_MEDIA_BUCKET, S3_PRIVATE_BUCKET)
 ```
 
+## Put S3 policies in files named after the corresponding buckets. For example, the policy for bucket ```your_bucket``` should go in file ```S3_POLICY_DIR/your_bucket```
 
-# Enjoy!
+## Relaunch your django server and your S3 policies will be refreshed!
+
+
+# Questions and issues
 
 Email me with any questions: [kenneth.jiang@gmail.com](kenneth.jiang@gmail.com).
